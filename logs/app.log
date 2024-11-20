@@ -1,0 +1,85 @@
+INFO 2024-11-20 04:33:34,477 Watching for file changes with StatReloader
+INFO 2024-11-20 04:33:42,643 "POST /api/drf-auth/logout/?next=/api/attendances/ HTTP/1.1" 302 0
+WARNING 2024-11-20 04:33:42,680 Unauthorized: /api/attendances/
+WARNING 2024-11-20 04:33:42,680 "GET /api/attendances/ HTTP/1.1" 401 5167
+INFO 2024-11-20 04:33:43,345 "GET /api/drf-auth/login/?next=/api/attendances/ HTTP/1.1" 200 2721
+INFO 2024-11-20 04:33:45,567 "POST /api/drf-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-11-20 04:33:45,576 Forbidden: /api/attendances/
+WARNING 2024-11-20 04:33:45,576 "GET /api/attendances/ HTTP/1.1" 403 5600
+WARNING 2024-11-20 04:42:54,024 Forbidden: /api/courses/
+WARNING 2024-11-20 04:45:02,025 Unauthorized: /api/courses/
+WARNING 2024-11-20 04:45:02,631 Unauthorized: /api/courses/1/
+WARNING 2024-11-20 04:45:03,214 Unauthorized: /api/courses/1/
+WARNING 2024-11-20 04:45:04,355 Forbidden: /api/courses/
+WARNING 2024-11-20 04:45:05,401 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:45:06,425 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:46:16,202 Unauthorized: /api/courses/
+WARNING 2024-11-20 04:46:16,752 Unauthorized: /api/courses/1/
+WARNING 2024-11-20 04:46:17,337 Unauthorized: /api/courses/1/
+WARNING 2024-11-20 04:46:18,487 Forbidden: /api/courses/
+WARNING 2024-11-20 04:46:19,628 Forbidden: /api/courses/
+WARNING 2024-11-20 04:46:20,664 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:46:21,741 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:46:22,906 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:46:24,012 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:46:48,536 Unauthorized: /api/courses/
+WARNING 2024-11-20 04:46:49,061 Unauthorized: /api/courses/1/
+WARNING 2024-11-20 04:46:49,601 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:46:50,728 Forbidden: /api/courses/
+WARNING 2024-11-20 04:46:51,850 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:46:52,946 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:48:19,901 Forbidden: /api/courses/
+WARNING 2024-11-20 04:48:20,970 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:48:21,997 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:48:23,121 Forbidden: /api/courses/
+WARNING 2024-11-20 04:48:24,294 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:48:25,388 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:52:08,282 Forbidden: /api/courses/
+WARNING 2024-11-20 04:52:09,409 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:52:10,501 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:52:11,595 Forbidden: /api/courses/
+WARNING 2024-11-20 04:52:12,637 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:52:13,659 Forbidden: /api/courses/1/
+WARNING 2024-11-20 04:57:40,213 Forbidden: /api/courses/
+WARNING 2024-11-20 04:57:41,965 Forbidden: /api/courses/
+WARNING 2024-11-20 04:57:52,909 Forbidden: /api/courses/
+WARNING 2024-11-20 04:57:54,448 Forbidden: /api/courses/
+WARNING 2024-11-20 04:58:01,089 Forbidden: /api/courses/
+WARNING 2024-11-20 04:58:02,680 Forbidden: /api/courses/
+WARNING 2024-11-20 05:00:15,271 Forbidden: /api/courses/
+WARNING 2024-11-20 05:00:16,878 Forbidden: /api/courses/
+WARNING 2024-11-20 05:02:10,864 Forbidden: /api/courses/
+WARNING 2024-11-20 05:02:12,449 Forbidden: /api/courses/
+WARNING 2024-11-20 05:02:14,112 Not Found: /api/grades/
+WARNING 2024-11-20 05:06:49,304 Forbidden: /api/courses/
+WARNING 2024-11-20 05:06:50,918 Forbidden: /api/courses/
+WARNING 2024-11-20 05:06:52,591 Not Found: /api/grades/
+WARNING 2024-11-20 05:06:54,145 Not Found: /api/grades/1/
+INFO 2024-11-20 05:07:12,427 Watching for file changes with StatReloader
+WARNING 2024-11-20 05:07:17,455 Not Found: /
+WARNING 2024-11-20 05:07:17,457 "GET / HTTP/1.1" 404 2772
+INFO 2024-11-20 05:07:22,829 "GET /api/auth/users/ HTTP/1.1" 200 13283
+INFO 2024-11-20 05:07:23,055 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-11-20 05:07:23,126 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-11-20 05:07:23,126 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-11-20 05:07:23,127 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-11-20 05:07:23,163 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-11-20 05:07:23,164 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-11-20 05:07:23,166 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-11-20 05:07:23,187 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-11-20 05:07:23,245 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-11-20 05:07:23,254 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-11-20 05:07:23,265 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2024-11-20 05:07:23,268 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-11-20 05:07:23,290 "GET /static/rest_framework/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 304 0
+WARNING 2024-11-20 05:07:26,951 Forbidden: /api/courses/
+WARNING 2024-11-20 05:07:26,952 "GET /api/courses/ HTTP/1.1" 403 5552
+WARNING 2024-11-20 05:07:27,923 Forbidden: /api/courses/
+WARNING 2024-11-20 05:07:27,923 "GET /api/courses/ HTTP/1.1" 403 5552
+INFO 2024-11-20 05:07:38,950 "GET /api/assign/1/ HTTP/1.1" 200 12027
+INFO 2024-11-20 05:07:43,190 "PUT /api/assign/1/ HTTP/1.1" 200 12023
+INFO 2024-11-20 05:07:52,518 "GET /api/assign/1/ HTTP/1.1" 200 12023
+WARNING 2024-11-20 05:08:06,872 Forbidden: /api/courses/
+WARNING 2024-11-20 05:08:08,551 Forbidden: /api/courses/
+WARNING 2024-11-20 05:08:10,161 Not Found: /api/grades/
+WARNING 2024-11-20 05:08:11,827 Not Found: /api/grades/1/
