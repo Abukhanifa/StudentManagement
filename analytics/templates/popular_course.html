@@ -1,0 +1,37 @@
+<!-- analytics/templates/analytics/popular_courses_report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Courses Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1 class="mb-4">Popular Courses Report</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Course Title</th>
+                <th scope="col">Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in popular_courses %}
+            <tr>
+                <td>{{ course.course.title }}</td>
+                <td>{{ course.views }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No popular courses found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

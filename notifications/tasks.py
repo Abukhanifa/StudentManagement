@@ -1,7 +1,8 @@
 from celery import shared_task
 from django.core.mail import send_mail
 from students.models import Student
-from .models import Attendance, Grade
+from attendance.models import Attendance
+from grades.models import Grade
 
 @shared_task
 def attendance_reminder():
@@ -10,7 +11,7 @@ def attendance_reminder():
         send_mail(
             'Attendance Reminder',
             'This is a reminder to mark your attendance for today.',
-            'a_kuatuly@kbtu.kz',
+            'abuhanifathebest@gmail.com',
             [student.email],
             fail_silently=False,
         )

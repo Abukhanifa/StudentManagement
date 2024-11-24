@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +46,11 @@ INSTALLED_APPS = [
     'notifications',
     'students',
     
+    'django_celery_beat',
+    'drf_yasg',
+    'analytics',
+    
+    
     'rest_framework',
     'djoser',
     'django_filters',
@@ -63,10 +69,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'StudentManagement.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),  # Default templates directory
+            os.path.join(BASE_DIR, 'analytics', 'templates'),  # Your analytics app templates directory
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,18 +99,32 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'analytics': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_analytics_db',
+        # other settings
+    },
 }
 
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',  # Change as per your Redis setup
+        'LOCATION': 'redis://127.0.0.1:6379/0',  # Change as per your Redis setup
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'abuhanifathebest@gmail.com'
+EMAIL_HOST_PASSWORD = 'vwwd jfav bqsk ibtn'
+
 
 import os
 from logging.handlers import RotatingFileHandler
@@ -110,33 +134,25 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {message}',
+            'format': '{levelname} {asctime} {module} {message}',
             'style': '{',
         },
-        'detailed': {
-            'format': '{levelname} {asctime} {message}',
+        'simple': {
+            'format': '{levelname} {message}',
             'style': '{',
         },
     },
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'app.log'),
-            'formatter': 'detailed',
-        },
-        'rotating_file': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'app.log'),
-            'maxBytes': 10 * 1024 * 1024,  # 10MB
-            'backupCount': 5,
-            'formatter': 'detailed',
+            'filename': 'attendance.log',  # Path to the log file
+            'formatter': 'verbose',
         },
     },
     'loggers': {
@@ -145,18 +161,13 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-        'myapp': {
+        'app_name': {  # Replace with your app's name
             'handlers': ['console', 'file'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': True,
         },
     },
 }
-
-
-
-
-
 
 # Celery Settings
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Redis URL
@@ -185,6 +196,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
+    
+    
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
@@ -199,6 +212,16 @@ REST_FRAMEWORK = {
            'rest_framework.filters.SearchFilter',
            'rest_framework.filters.OrderingFilter',
        ],
+    
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'analytics.throttling.RequestTrackerThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '100/hour',
+    },
 }
 
 # Disable form rendering in django-filters for API views

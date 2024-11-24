@@ -1,10 +1,10 @@
 from rest_framework import viewsets, permissions
-from rest_framework.exceptions import PermissionDenied
-from django_filters.rest_framework import DjangoFilterBackend
 from .models import Student
 from .serializers import StudentSerializer
 from rest_framework.pagination import PageNumberPagination
 from django.core.cache import cache
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 class StudentPagination(PageNumberPagination):
     page_size = 5
@@ -14,34 +14,33 @@ class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     permission_classes = [permissions.IsAuthenticated]
-    pagination_class = StudentPagination
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name', 'email']
 
-    def get_queryset(self):
-        user = self.request.user
-        cache_key = f'students_list_{user.role}'
-        students = cache.get(cache_key)
-        if not students:
-            if user.role == 'Student':
-                students = self.queryset.filter(id=user.id)
-            elif user.role in ['Teacher', 'Admin']:
-                students = self.queryset.all()
-            cache.set(cache_key, students, timeout=3600)  # Cache for 1 hour
-        return students
+    @swagger_auto_schema(
+        operation_description="Retrieve a list of students (for Teachers/Admin) or the authenticated student data",
+        responses={200: StudentSerializer(many=True)}
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
-    def perform_create(self, serializer):
-        student = serializer.save()
-        cache.delete(f'students_list_{student.role}')  # Invalidate cache for specific role
+    @swagger_auto_schema(
+        operation_description="Create a new student record",
+        request_body=StudentSerializer,
+        responses={201: StudentSerializer}
+    )
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
 
-    def perform_update(self, serializer):
-        student = serializer.save()
-        cache.delete(f'students_list_{student.role}')  # Invalidate cache for specific role
+    @swagger_auto_schema(
+        operation_description="Update an existing student record",
+        request_body=StudentSerializer,
+        responses={200: StudentSerializer}
+    )
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
 
-    def perform_destroy(self, instance):
-        cache.delete(f'students_list_{instance.role}')  # Invalidate cache for specific role
-        super().perform_destroy(instance)
-
-
-    
-    
+    @swagger_auto_schema(
+        operation_description="Delete a student record",
+        responses={204: 'No Content'}
+    )
+    def destroy(self, request, *args, **kwargs):
+        return super().destroy(request, *args, **kwargs)
